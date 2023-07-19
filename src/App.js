@@ -14,14 +14,21 @@ function App() {
   const [cart, setCart] = useState([]);
 
   const addItem = (item) => {
-
+    
     setCart([...cart, item]);
+  };
+
+  const deleteItem = (item) => {
+    console.log(item)
+    const filtered = cart.filter(movie=>movie.title !== item);
+    
+    setCart([...filtered]);
   };
 
   return (
     <div className="App">
       <ProductContext.Provider value={{ products, addItem }}>
-        <CartContext.Provider value={{ cart }}>
+        <CartContext.Provider value={{ cart, deleteItem }}>
           <Navigation />
 
           {/* Routelar */}
